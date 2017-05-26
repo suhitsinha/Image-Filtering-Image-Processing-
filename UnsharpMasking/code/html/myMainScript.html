@@ -1,0 +1,161 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>myMainScript</title><meta name="generator" content="MATLAB 8.4"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2015-08-30"><meta name="DC.source" content="myMainScript.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">Image sharpening using Unsharp Masking</a></li><li><a href="#2">Image LionCrop.mat</a></li><li><a href="#6">Image superMoonCrop.mat</a></li></ul></div><h2>Image sharpening using Unsharp Masking<a name="1"></a></h2><p>Applied on the picture to perform image sharpening using unsharp masking After performing the image sharpening input and output image has been contrast streched to the same intensity range.</p><pre class="codeinput">tic;
+</pre><h2>Image LionCrop.mat<a name="2"></a></h2><p>Both the input and output image has been shown side by side using same color map.</p><pre class="codeinput">window_size = 7;       <span class="comment">%Value of window size</span>
+Sigma_value = 2;        <span class="comment">%Value of sigma</span>
+scaling_factor = 1;     <span class="comment">%Value of scaling factor</span>
+</pre><pre class="codeinput">[output_arr, m, n] = myUnsharpMasking(<span class="string">'lionCrop.mat'</span>, window_size, Sigma_value, scaling_factor);
+</pre><p>The input and output image with the given parameters</p><pre class="codeinput">figure
+imshow(output_arr), title(strcat(<span class="string">'Original and Contrast streched Filtered image with sigma value: '</span>, num2str(Sigma_value), <span class="string">' and window size: '</span>,num2str(window_size))), colorbar;
+axis([0 2*n 0 m]), axis <span class="string">on</span>
+</pre><pre class="codeoutput">Warning: Image is too big to fit on screen; displaying at 67% 
+</pre><img vspace="5" hspace="5" src="myMainScript_01.png" alt=""> <p>Optimal tuned values</p><pre class="codeinput">disp(strcat(<span class="string">'window size parameter is: '</span>, num2str(window_size)));
+disp(strcat(<span class="string">'Gaussian standard-deviation parameter is: '</span>, num2str(Sigma_value)));
+disp(strcat(<span class="string">'scaling parameter is: '</span>, num2str(scaling_factor)));
+
+toc;
+</pre><pre class="codeoutput">window size parameter is:7
+Gaussian standard-deviation parameter is:2
+scaling parameter is:1
+Elapsed time is 1.227180 seconds.
+</pre><h2>Image superMoonCrop.mat<a name="6"></a></h2><p>Both the input and output image has been shown side by side using same color map.</p><pre class="codeinput">tic;
+window_size = 17;       <span class="comment">%Value of window size</span>
+Sigma_value = 3;        <span class="comment">%Value of sigma</span>
+scaling_factor = 3;     <span class="comment">%Value of scaling factor</span>
+</pre><pre class="codeinput">[output_arr, m, n] = myUnsharpMasking(<span class="string">'superMoonCrop.mat'</span>, window_size, Sigma_value, scaling_factor);
+</pre><p>The input and output image with the given parameters</p><pre class="codeinput">figure
+imshow(output_arr), title(strcat(<span class="string">'Original and Contrast streched Filtered image with sigma value: '</span>, num2str(Sigma_value), <span class="string">' and window size: '</span>,num2str(window_size))), colorbar;
+axis([1 2*n 1 m]), axis <span class="string">on</span>
+</pre><pre class="codeoutput">Warning: Image is too big to fit on screen; displaying at 67% 
+</pre><img vspace="5" hspace="5" src="myMainScript_02.png" alt=""> <p>Optimal tuned values</p><pre class="codeinput">disp(strcat(<span class="string">'window size parameter is: '</span>, num2str(window_size)));
+disp(strcat(<span class="string">'Gaussian standard-deviation parameter is: '</span>, num2str(Sigma_value)));
+disp(strcat(<span class="string">'scaling parameter is: '</span>, num2str(scaling_factor)));
+
+toc;
+</pre><pre class="codeoutput">window size parameter is:17
+Gaussian standard-deviation parameter is:3
+scaling parameter is:3
+Elapsed time is 1.677900 seconds.
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2014b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Image sharpening using Unsharp Masking
+%
+% Applied on the picture to perform image sharpening using unsharp masking
+% After performing the image sharpening input and output image has been 
+% contrast streched to the same intensity range.
+
+tic;
+%% Image LionCrop.mat
+%
+% Both the input and output image has been shown side by side using same
+% color map.
+
+window_size = 7;       %Value of window size
+Sigma_value = 2;        %Value of sigma
+scaling_factor = 1;     %Value of scaling factor
+%%
+[output_arr, m, n] = myUnsharpMasking('lionCrop.mat', window_size, Sigma_value, scaling_factor);
+%%
+% The input and output image with the given parameters
+figure
+imshow(output_arr), title(strcat('Original and Contrast streched Filtered image with sigma value: ', num2str(Sigma_value), ' and window size: ',num2str(window_size))), colorbar;
+axis([0 2*n 0 m]), axis on
+%%
+% Optimal tuned values
+disp(strcat('window size parameter is: ', num2str(window_size)));
+disp(strcat('Gaussian standard-deviation parameter is: ', num2str(Sigma_value)));
+disp(strcat('scaling parameter is: ', num2str(scaling_factor)));
+
+toc;
+%% Image superMoonCrop.mat
+%
+% Both the input and output image has been shown side by side using same
+% color map.
+tic;
+window_size = 17;       %Value of window size
+Sigma_value = 3;        %Value of sigma
+scaling_factor = 3;     %Value of scaling factor
+%%
+[output_arr, m, n] = myUnsharpMasking('superMoonCrop.mat', window_size, Sigma_value, scaling_factor);
+%%
+% The input and output image with the given parameters
+figure
+imshow(output_arr), title(strcat('Original and Contrast streched Filtered image with sigma value: ', num2str(Sigma_value), ' and window size: ',num2str(window_size))), colorbar;
+axis([1 2*n 1 m]), axis on
+
+%%
+% Optimal tuned values
+disp(strcat('window size parameter is: ', num2str(window_size)));
+disp(strcat('Gaussian standard-deviation parameter is: ', num2str(Sigma_value)));
+disp(strcat('scaling parameter is: ', num2str(scaling_factor)));
+
+toc;
+
+##### SOURCE END #####
+--></body></html>
